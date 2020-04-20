@@ -1,0 +1,12 @@
+div.flex.flex-row.border.border-black
+  div.p-4
+    p
+      span.font-bold Commenter:
+      = comment.commenter
+    p
+      span.font-bold Comment:
+      = comment.body
+  div.p-2
+    = link_to 'Destroy Comment', [comment.article, comment],
+               method: :delete,
+               data: { confirm: 'Are you sure?' }

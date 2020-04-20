@@ -1,0 +1,30 @@
+.container
+  p
+    span.font-bold Title:&nbsp;
+    = @article.title
+  p
+    span.font-bold Text:&nbsp;
+    = @article.text
+
+  h2 Comments
+  / = @article.comments.each do |comment|
+  /   p
+  /     span.font-bold Commenter:
+  /     = comment.commenter
+  /   p
+  /     span.font-bold Comment:
+  /     = comment.body
+  = render @article.comments
+
+  h2 Add a comment:
+  / = simple_form_for [@article, @article.comments.build] do |f|
+  /   p
+  /     = f.input :commenter, input_html: { class: 'flex flex-column border border-black', placeholder: 'Write your name' }
+  /   p
+  /     = f.input :body, as: :text, input_html: { class: 'flex flex-column border border-black', placeholder: 'Write your comment' }
+  /   = f.submit
+  = render 'comments/form'
+
+  .flex.flex-row
+    = link_to 'Edit', edit_article_path(@article), class: 'p-1 mr-10'
+    = link_to 'Back', articles_path, class: 'p-1'
